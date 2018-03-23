@@ -1,0 +1,55 @@
+
+/* Site Padding */
+
+/* This is over-all padding */
+
+.wrap {
+
+  padding-left: 10px !important;
+
+  padding-right: 10px !important;
+
+}
+
+/* This is overall margin */
+
+.content-area {
+
+  margin-left: 3px !important;
+
+  margin-right: 3px !important;
+
+  max-width: 100% !important;
+
+}
+
+/* This is padding for elements created with page-builder */
+
+.fl-row-content-wrap {
+
+  padding: 0px;
+
+}
+
+/* This is the max-width for elements created with page-builder. Default was 1100px. I bumped it up to 1500 */
+
+.fl-row-fixed-width {
+
+  max-width: 1500px !important;
+
+}
+
+/* End Site padding */
+
+/* Footer Styles */
+
+
+/* Center content inside footer widget columns, make them 50%, and add 20px padding */
+
+.footer-widget-1, .footer-widget-2 {
+
+  text-align: center;
+
+  width: 50% !important;
+}
+
