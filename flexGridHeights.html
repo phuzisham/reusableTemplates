@@ -1,0 +1,77 @@
+<script type="text/javascript">
+  // Target folder and set empty array
+  var folderName = "/images/site/Adams/";
+  var listname = [];
+  var altTitle = "Silicon Valley Vanishing Edge Spa";
+
+  $.ajax({
+    url : folderName, // change to local url, won't work with absolute url.
+    success: function (data) {
+       callback(data);
+    }
+  });
+
+  function callback(data) {
+    $(data).find("a").attr("href", function (i, val) {
+      if( val.match(/.(jpe?g|png|gif|JPG)$/) ) {
+        listname.push(val);
+      }
+    });
+
+    for (var i = 0; i < listname.length; i++ )  {
+      var title = listname[i].replace(/%20/g, " ").slice(0, -4);
+      //$('#adams').append( "" );
+      $('#adamsGallery').append( "<div class='cell'><img src='"+ folderName + listname[i] +"' alt='"+ altTitle +"' title='" + title + "' class='responsive-image'></div>" );
+    }
+  };
+</script>
+
+<style>
+  .container {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+  }
+
+  .grid {
+    line-height: 0;
+    -moz-column-count:    1;
+    -webkit-column-count: 1;
+    column-count:         1;
+    column-gap:           0px;
+    -moz-column-gap:      0px;
+    -webkit-column-gap:   0px;
+  }
+
+  .grid img {
+    width: 100% !important;
+    height: auto !important;
+    padding: 5px;
+  }
+
+  @media screen and (min-width: 600px) {
+    .grid {
+      -webkit-column-count: 2;
+      -moz-column-count:    2;
+      column-count:         2;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    .grid {
+      -webkit-column-count: 3;
+      -moz-column-count:    3;
+      column-count:         3;
+    }
+  }
+</style>
+
+<div class='iamgesGallery'>
+  <h1>Silicon Valley Vanishing Edge Spa</h1>
+
+  <div class="container">
+    <div id="adamsGallery" class="grid">
+
+    </div>
+  </div>
+</div>
