@@ -2,8 +2,7 @@
   // Target folder and set empty array
   var folderName = "/images/site/Adams/";
   var listname = [];
-  
-  // alt title for all images
+  // Alt title for all images
   var altTitle = "Silicon Valley Vanishing Edge Spa";
 
   $.ajax({
@@ -12,7 +11,8 @@
        callback(data);
     }
   });
-
+  
+  // Push images to array
   function callback(data) {
     $(data).find("a").attr("href", function (i, val) {
       if( val.match(/.(jpe?g|png|gif|JPG)$/) ) {
@@ -21,6 +21,7 @@
     });
 
     for (var i = 0; i < listname.length; i++ )  {
+      // Remove %20 spaces wiht actual spaces and take off file extensions
       var title = listname[i].replace(/%20/g, " ").slice(0, -4);
       $('#adamsGallery').append( "<img src='"+ folderName + listname[i] +"' alt='"+ altTitle +"' title='" + title + "' class='responsive-image'>" );
     }
@@ -68,7 +69,6 @@
 </style>
 
 <h1>Silicon Valley Vanishing Edge Spa</h1>
-
 <div class="container">
   <div id="adamsGallery" class="grid">
 
