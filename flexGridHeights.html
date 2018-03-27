@@ -2,6 +2,8 @@
   // Target folder and set empty array
   var folderName = "/images/site/Adams/";
   var listname = [];
+  
+  // alt title for all images
   var altTitle = "Silicon Valley Vanishing Edge Spa";
 
   $.ajax({
@@ -20,8 +22,7 @@
 
     for (var i = 0; i < listname.length; i++ )  {
       var title = listname[i].replace(/%20/g, " ").slice(0, -4);
-      //$('#adams').append( "" );
-      $('#adamsGallery').append( "<div class='cell'><img src='"+ folderName + listname[i] +"' alt='"+ altTitle +"' title='" + title + "' class='responsive-image'></div>" );
+      $('#adamsGallery').append( "<img src='"+ folderName + listname[i] +"' alt='"+ altTitle +"' title='" + title + "' class='responsive-image'>" );
     }
   };
 </script>
@@ -66,12 +67,10 @@
   }
 </style>
 
-<div class='iamgesGallery'>
-  <h1>Silicon Valley Vanishing Edge Spa</h1>
+<h1>Silicon Valley Vanishing Edge Spa</h1>
 
-  <div class="container">
-    <div id="adamsGallery" class="grid">
+<div class="container">
+  <div id="adamsGallery" class="grid">
 
-    </div>
   </div>
 </div>
