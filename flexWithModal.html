@@ -1,0 +1,191 @@
+<script type="text/javascript">
+  // Target folder and set empty array
+  var folderName = "/images/site/Adams/";
+  var listname = [];
+  // Alt title for all images
+  var altTitle = "Silicon Valley Vanishing Edge Spa";
+
+  $.ajax({
+    url : folderName, // change to local url, won't work with absolute url.
+    success: function (data) {
+       callback(data);
+    }
+  });
+
+  function callback(data) {
+    $(data).find("a").attr("href", function (i, val) {
+      if( val.match(/.(jpe?g|png|gif|JPG)$/) ) {
+        listname.push(val);
+      }
+    });
+
+    for (var i = 0; i < listname.length; i++ )  {
+      // Remove %20 spaces wiht actual spaces and take off file extensions
+      var title = listname[i].replace(/%20/g, " ").slice(0, -4);
+      $('#adamsGallery').append( "<img src='"+ folderName + listname[i] +"' alt='"+ altTitle +"' title='" + title + "' class='responsive-image'>" );
+    }
+  };
+</script>
+
+<style>
+  .container {
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .grid {
+    line-height: 0;
+    -moz-column-count:    1;
+    -webkit-column-count: 1;
+    column-count:         1;
+    column-gap:           0px;
+    -moz-column-gap:      0px;
+    -webkit-column-gap:   0px;
+  }
+
+  .grid img {
+    width: 100% !important;
+    height: auto !important;
+    padding: 5px;
+  }
+
+  @media screen and (min-width: 600px) {
+    .grid {
+      -webkit-column-count: 2;
+      -moz-column-count:    2;
+      column-count:         2;
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    .grid {
+      -webkit-column-count: 3;
+      -moz-column-count:    3;
+      column-count:         3;
+    }
+  }
+
+  @media screen and (min-width: 1300px) {
+    .grid {
+      -webkit-column-count: 4;
+      -moz-column-count:    4;
+      column-count:         4;
+    }
+  }
+</style>
+
+<h1>Silicon Valley Vanishing Edge Spa</h1>
+<div class="container">
+  <div id="adamsGallery" class="grid">
+
+  </div>
+</div>
+
+<!-- start modal -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" style='font-family: "Times New Roman", Times, serif;'>&#10006;</span>
+    <div>
+      <h4 id="imageCaption">Image's caption</h4>
+      <div id="imageholder"></div>
+    </div>
+  </div>
+</div>
+<!-- end modal -->
+
+<script>
+  $('#adamsGallery').on('click' , 'img', function () {
+    var imgSrc = $(this).attr("src");
+    var imgTitle =$(this).attr("title");
+
+    $('#imageCaption').html(imgTitle);
+
+    var image = '<img src="' + imgSrc + '" title="' + imgTitle + '">';
+    $("#imageholder").append(image);
+
+    modal.style.display = "block";
+  });
+
+  // Get the modal
+  var modal = document.getElementById('myModal');
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  function openmodal() {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+    $("#imageholder").empty();
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+      $("#imageholder").empty();
+    }
+  }
+</script>
+
+<style>
+/* The Modal (background) */
+  .modal-content img {
+    width: 100%;
+  }
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    padding-bottom: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: #000000;
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    text-align: center;
+    border-radius: 10px;
+  }
+  .modal-content p {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1.4em;
+    line-height: 1em;
+  }
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
